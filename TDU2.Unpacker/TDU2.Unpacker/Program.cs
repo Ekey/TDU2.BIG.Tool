@@ -42,7 +42,7 @@ namespace TDU2.Unpacker
 
             if (!File.Exists(m_MapFile))
             {
-                Utils.iSetError("[ERROR]: Input MAP file -> " + m_BigFile + " <- does not exist");
+                Utils.iSetError("[ERROR]: Input MAP file -> " + m_MapFile + " <- does not exist");
                 return;
             }
 
