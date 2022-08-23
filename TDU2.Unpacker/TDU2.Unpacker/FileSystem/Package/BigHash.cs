@@ -75,17 +75,17 @@ namespace TDU2.Unpacker
 
         public static UInt64 iGetHash(String m_String)
         {
-            UInt32 dwHint1 = 0xFAC432B1;
-            UInt32 dwHint2 = 0x0CD5E44A;
+            UInt32 dwCrc1 = 0xFAC432B1;
+            UInt32 dwCrc2 = 0x0CD5E44A;
 
             for (Int32 i = 0; i < m_String.Length; i++)
             {
-                UInt32 dwIndex = (dwHint1 >> 24) & 255;
+                UInt32 dwIndex = (dwCrc1 >> 24) & 255;
 
-                dwHint1 = ((dwHint1 << 8) & 0xFFFFFFFF) ^ (dwHint2 >> 24) ^ m_CrcTable[dwIndex * 2];
-                dwHint2 = (dwHint2 << 8) ^ (Byte)m_String[i] ^ m_CrcTable[dwIndex * 2 + 1];
+                dwCrc1 = ((dwCrc1 << 8) & 0xFFFFFFFF) ^ (dwCrc2 >> 24) ^ m_CrcTable[dwIndex * 2];
+                dwCrc2 = (dwCrc2 << 8) ^ (Byte)m_String[i] ^ m_CrcTable[dwIndex * 2 + 1];
             }
-            return (UInt64)dwHint1 << 32 | dwHint2;
+            return (UInt64)dwCrc2 << 32 | dwCrc1;
         }
     }
 }

@@ -45,9 +45,7 @@ namespace TDU2.Unpacker
                 m_EntryTable.Clear();
                 for (Int32 i = 0; i < m_Header.dwTotalFiles; i++)
                 {
-                    UInt32 dwTemp1 = TMapStream.ReadUInt32(true);
-                    UInt32 dwTemp2 = TMapStream.ReadUInt32(true);
-                    UInt64 dwNameHash = (UInt64)dwTemp2 << 32 | dwTemp1;
+                    UInt64 dwNameHash = TMapStream.ReadUInt64(true);
 
                     var TEntry = new MapEntry
                     {
